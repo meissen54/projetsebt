@@ -1,0 +1,101 @@
+.bgfil
+{
+    background-image:url(bg.jpg) ;
+    margin: 0;
+    padding: 0;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center ;
+    background-attachment: fixed;
+}
+h2
+{
+    position: relative;
+    bottom:45px;
+}
+label
+{
+    position: relative;
+    bottom:47px;
+    font-size: 1.2em;
+}
+.logbox {
+    width: 600px;
+    height: 60vh;
+    padding:40px;
+    background: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    border-radius: 10px; 
+    position: relative;
+    left: 500px;
+}
+.logbox h3
+{
+    text-align: center;
+    color:#0F1035 ;
+    margin-bottom: 30px;
+}
+.textbox
+{
+    position: relative;
+    margin-bottom: 25px;
+}
+.textbox input
+{
+    width: 100%;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #0F1035;
+    color: #333;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    bottom: 50px;
+}
+.btn {
+    width: 30%;
+    background: #0F1035;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #96C8EE;
+    border-radius: 5px;
+    position: relative;
+    bottom: 58px;
+}
+
+.btn:hover {
+    background: #555;
+}
+.maladie
+{
+    position: relative;
+    bottom:50px;
+    font-size: 1.2em;
+}
+select
+{
+    position: relative;
+    bottom: 50px;
+    background: transparent;
+    border-color:#0F1035;
+}
+.btnc {
+    width: 50%;
+    background: #0F1035;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #96C8EE;
+    border-radius: 5px;
+    position: relative;
+    bottom: 58px;
+}
+
+.btnc:hover {
+    background: #555;
+}
+

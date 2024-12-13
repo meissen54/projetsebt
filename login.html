@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Bus</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="shortcut icon" href="logo.png" >
+</head>
+<body class="bgl">    
+
+    <header >
+        <ol class="entete">
+            <li><a href=http://192.168.137.1:3000/search_buses >Accueil</a></li>
+            <li><a href="http://192.168.137.1:3000/login">Se Connecter</a></li>
+            <li><a href=aide.php>Aide</a></li>
+        </ol>
+        <img src="logo.png" alt="logo" class="entetelogo">
+    </header>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <div class="logbox">
+        <h2>Se connecter</h2>
+        <form action="http://192.168.137.1:3000/login" method="post" id="loginForm">
+            <div class="textbox">
+                <input type="email" name="email" placeholder="Entrez votre email" required>
+            </div>
+            <div class="textbox">
+                <input type="password" name="password" placeholder="Votre mot de passe" required>
+            </div>
+           
+            <button type="submit" class="btn">Se connecter</button>
+        </form>
+        <h5><a href="http://192.168.137.1:3000/sign_up">Créer un compte</a></h5>
+    </div>
+     <!-- Div pour afficher toutes les erreurs -->
+     <div class="error-messages" style="color: red; margin-top: 20px; text-align: center;">
+        <!-- Les erreurs s'afficheront ici -->
+        <ul id="errorList"></ul>
+    </div>
+</div>
+</center>
+   
+<footer>
+    <ol class="foot">
+        <img src="tel.png" alt="logotel" class="tel">
+        <li class="num">72 000 000 </li>
+        <img src="mail.png" alt="logomail" class="mail">
+        <li class="admail">GoBus@gmail.com</li>
+        <img src="link.png" alt="logo" class="linkd">
+        <li class="adlink">www.linkedin.com/in/GoBus-023305285</li>
+    </ol>
+</footer>
+
+</body>
+</html>

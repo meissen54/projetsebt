@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner Ticket</title>
+    <style>
+        #qr-reader {
+            width: 500px;
+            margin: 0 auto;
+            border: 2px solid #000;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        #stop-scan {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #stop-scan:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Scanner le QR Code</h1>
+    
+    <div id="qr-reader"></div>
+    <button id="stop-scan">Arrêter le scan</button>
+
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script>
+        // Initialisation du lecteur QR
+        const qrReader = new Html5Qrcode("qr-reader");
+
+        qrReader.start(
+            { facingMode: "environment" }, // Utilisation de la caméra arrière
+            { fps: 10, qrbox: 250 }, // Paramètres de lecture du QR
+            (decodedText) => {
+                console.log("QR Code scanné:", decodedText);
+
+                // Extraction de l'ID de réservation depuis le QR code
+                const match = decodedText.match(/ReservationID: (\w+)/);
+                if (match) {
+                    const reservationId = match[1];
+                    console.log("ID Réservation:", reservationId);
+
+                    // Envoyer l'ID au serveur pour validation
+                    fetch('http://192.168.137.1:3000/scan_ticket', {  // Assurez-vous que l'URL est correcte
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ reservationId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Afficher un message en fonction de la réponse du serveur
+                        alert(data.message);
+                    })
+                    .catch(err => {
+                        console.error("Erreur lors de la validation:", err);
+                        alert("Erreur lors de la validation du ticket.");
+                    });
+                }
+            },
+            (errorMessage) => {
+                console.error("Erreur de scan:", errorMessage);
+            }
+        );
+
+        // Arrêter le scan lorsque l'utilisateur clique sur le bouton
+        document.getElementById("stop-scan").addEventListener("click", () => {
+            qrReader.stop().then(() => {
+                console.log("Scan arrêté.");
+                alert("Le scan a été arrêté.");
+            }).catch((err) => {
+                console.error("Erreur lors de l'arrêt du scan:", err);
+                alert("Erreur lors de l'arrêt du scan.");
+            });
+        });
+    </script>
+</body>
+</html>

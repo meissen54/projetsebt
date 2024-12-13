@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Bus</title>
+    <link rel="shortcut icon" href="logo.png" >
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="sign.css">
+</head>
+<body class="bgfil">
+    <header >
+        <ol class="entete">
+            <li><a href=http://192.168.137.1:3000/search_buses >Accueil</a></li>
+            <li><a href="http://192.168.137.1:3000/login">Se Connecter</a></li>
+            <li><a href=aide.php>Aide</a></li>
+        </ol>
+        <img src="logo.png" alt="logo" class="entetelogo">
+    </header>
+    <br>
+    <div class="logbox">
+        <h2><center>Inscrivez-Vous ...! </center></h2>
+        <form action="http://192.168.137.1:3000/sign_up" method="post">
+            <label ></label>
+            <label>Nom :</label>
+            <div class="textbox">
+                <input type="text" name="lastname" required>
+            </div>
+            <label>Prénom :</label>
+            <div class="textbox">
+                <input type="text" name="firstname" required>
+            </div>
+            <label>Email :</label>
+            <div class="textbox">
+                <input type="email" name="email" required>
+            </div>
+            <label>CIN :</label>
+            <div class="textbox">
+                <input type="number" name="cin"required>
+            </div>
+            <label>Numero de telephone :</label>
+            <div class="textbox">
+                <input type="tel" name="tel" required>
+            </div>
+            <label>Mot de passe :</label>
+            <div class="textbox">
+                <input type="password" name="password" required>
+            </div>
+           <center><button type="submit" class="btn">S'inscrire</button></center>
+        </form>
+    </div>
+    <footer>
+        <ol class="foot">
+            <img src="tel.png" alt="logotel" class="tel">
+            <li class="num">72 000 000 </li>
+            <img src="mail.png" alt="logomail" class="mail">
+            <li class="admail">GoBus@gmail.com</li>
+            <img src="link.png" alt="logo" class="linkd">
+            <li class="adlink">www.linkedin.com/in/GoBus-023305285</li>
+        </ol>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Bus</title>
+    <link rel="stylesheet" type="text/css" href="accueillog.css">
+    <link rel="shortcut icon" href="logo.png">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body class="bglaclog">    
+
+    <header>
+        <ol class="entete">
+            <li><a href="http://192.168.137.1:3000/search_buses">Accueil</a></li>
+            <li><a href="/logout">Se Déconnecter</a></li>
+        </ol>
+        <img src="logo.png" alt="logo" class="entetelogo">
+    </header>
+
+    <br><br>
+   
+    <table>
+        <tr>
+            <td class="col-15"></td>
+            <td class="col-35">
+                <div class="logbox">
+                    <h2>Choisissez votre destination!</h2>
+                    <form id="searchForm">
+                        <label for="depart" class="depart">Départ </label><br><br>
+                        <select name="depart" id="depart" required>
+                            <option value="">Choisir...</option>
+                            <option value="Tunis">Tunis</option>
+                            <option value="Bizerte">Bizerte</option>
+                            <option value="Mateur">Mateur</option>
+                        </select>
+                        <br><br>
+                        <label for="arrive" class="arrivee">Arrivée</label><br><br>
+                        <select name="arrive" id="arrive" required>
+                            <option value="">Choisir...</option>
+                            <option value="Kef">Kef</option>
+                            <option value="Beja">Beja</option>
+                            <option value="Gafsa">Gafsa</option>
+                        </select>
+                        <br><br>
+                        <button type="submit" class="btn">Rechercher</button>
+                    </form>
+                </div>
+            </td>
+            <td class="col-5"></td>
+            <td class="col-35">
+                <div id="results" class="result">
+                    <form id="result">
+                        <!-- Résultats s'afficheront ici -->
+                    </form>
+                </div>
+            </td>
+            <td class="col-15"></td>
+        </tr>
+    </table>
+  
+    <script>
+        const form = document.getElementById('searchForm');
+        const resultsDiv = document.getElementById('results');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const depart = document.getElementById('depart').value;
+            const arrive = document.getElementById('arrive').value;
+
+            try {
+                const response = await fetch(`/search_bus?depart=${depart}&arrive=${arrive}`);
+                const data = await response.json();
+
+                if (data.message) {
+                    resultsDiv.innerHTML = `<p>${data.message}</p>`;
+                } else {
+                    let html = '<h3>Résultats :</h3><ul>';
+                    data.results.forEach(bus => {
+                        html += `
+                            <li>
+                                <input type="hidden" name="busmatricule" value="${bus.matricule}" id="busmatricule">
+
+                                <strong>Départ :</strong> ${bus.depart} <br>
+                                <strong>Arrivée :</strong> ${bus.arrive} <br>
+                                <strong>Nombre de places :</strong> ${bus.nbre_places} <br>
+                                <strong>Date de départ :</strong> ${bus.date_dep} <br>
+                                <strong>Heure de départ :</strong> ${bus.heure_dep}<br>
+                                <strong>Prix de ticket :</strong> ${bus.prix} TND <br>
+
+                                <a href="http://192.168.137.1:3000/add_reservation?busmatricule=${bus.matricule}&depart=${bus.depart}&arrive=${bus.arrive}">
+                                    <button>Réservez</button>
+                                </a>
+                            </li><br>
+                        `;
+                    });
+                    html += '</ul>';
+                    resultsDiv.innerHTML = html;
+                }
+            } catch (err) {
+                console.error("Erreur lors de la recherche :", err);
+                resultsDiv.innerHTML = `<p>Erreur serveur. Veuillez réessayer plus tard.</p>`;
+            }
+        });
+    </script>
+
+    <footer>
+        <ol class="foot">
+            <img src="tel.png" alt="logotel" class="tel">
+            <li class="num">72 000 000</li>
+            <img src="mail.png" alt="logomail" class="mail">
+            <li class="admail">GoBus@gmail.com</li>
+            <img src="link.png" alt="logo" class="linkd">
+            <li class="adlink">www.linkedin.com/in/GoBus-023305285</li>
+        </ol>
+    </footer>
+</body>
+</html>

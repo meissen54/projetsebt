@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Bus</title>
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="booking.css">
+</head>
+<body class="bgfil">
+    <header>
+        <ol class="entete">
+            <li><a href="http://192.168.137.1:3000/search_buses">Accueil</a></li>
+            <li><a href="http://192.168.137.1:3000/login">Se Déconnecter</a></li>
+        </ol>
+        <img src="logo.png" alt="logo" class="entetelogo">
+    </header>
+    <br><br>
+    <div class="logbox">
+        <h2><center>Booking ...!</center></h2>
+        <form action="http://192.168.137.1:3000/add_reservation" method="post">
+            <input type="hidden" name="busmatricule" id="busmatricule" >
+            <label>Départ :</label>
+            <div class="textbox">
+                <input type="text" name="depart" id="depart" required>
+            </div>
+            <label>Arrivée :</label>
+            <div class="textbox">
+                <input type="text" name="arrivee" id="arrive" required>
+            </div>
+            <label>Nombre de places à réserver :</label>
+            <div class="textbox">
+                <input type="number" name="nbre_places_reservees" required>
+            </div>
+            <label>numéro de la carte bancaire :</label>
+            <div class="textbox">
+                <input type="number" name="numeroCarte" required>
+            </div>
+            <label>code de la carte bancaire :</label>
+            <div class="textbox">
+                <input type="number" name="codeCarte" required>
+            </div>
+            <center><button type="submit" class="btn">Réservez</button></center>
+        </form>
+    </div>
+    <footer>
+        <ol class="foot">
+            <img src="tel.png" alt="logotel" class="tel">
+            <li class="num">72 000 000</li>
+            <img src="mail.png" alt="logomail" class="mail">
+            <li class="admail">GoBus@gmail.com</li>
+            <img src="link.png" alt="logo" class="linkd">
+            <li class="adlink">www.linkedin.com/in/GoBus-023305285</li>
+        </ol>
+    </footer>
+    <script>
+        // Récupérer les paramètres de l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const depart = urlParams.get('depart');
+        const arrive = urlParams.get('arrive');
+        const busmatricule=urlParams.get('busmatricule') 
+
+        // Remplir automatiquement les champs
+        document.getElementById('depart').value = depart || '';
+        document.getElementById('arrive').value = arrive || '';
+        document.getElementById('busmatricule').value = busmatricule || '';
+
+    </script>
+</body>
+</html>
